@@ -37,18 +37,23 @@ YI_RN_DEFINE_EXPORT_METHOD(CounterpartExtension, extendCounterpart)(uint64_t tag
     auto pCounterpart = pComponent->GetCounterpart(); //CYISceneNode 
     YI_ASSERT(pCounterpart, TAG, "Shadow view with tag %" PRIu64 " doesn't have a counterpart.", tag);
 
-    pCounterpart->DescendantLostFocus.Connect([this](){
-        // Do what you need here.
-        EmitEvent(LIST_LOST_FOCUS, {});
+    pCounterpart->DescendantLostFocus.Connect([this, tag](){
+        dynamic data = dynamic::object;
+        data["tag"] = tag;
+        EmitEvent(LIST_LOST_FOCUS, data);
     });
     
-    pCounterpart->DescendantGainedFocus.Connect([this](){
-        EmitEvent(LIST_GAINED_FOCUS, {});
+    pCounterpart->DescendantGainedFocus.Connect([this, tag](){
+        dynamic data = dynamic::object;
+        data["tag"] = tag;
+        EmitEvent(LIST_GAINED_FOCUS, data);
         // Do what you need here.
     });
 
-    pCounterpart->DescendantsChangedFocus.Connect([this](){
-        EmitEvent(LIST_CHANGED_FOCUS, {});
+    pCounterpart->DescendantsChangedFocus.Connect([this, tag](){
+        dynamic data = dynamic::object;
+        data["tag"] = tag;
+        EmitEvent(LIST_CHANGED_FOCUS, data);
         // Do what you need here.
     });
 }
