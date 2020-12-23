@@ -1,4 +1,4 @@
-import React, { useRef, forwardRef, useImperativeHandle } from 'react';
+import React, { useRef, forwardRef, useImperativeHandle, useEffect } from 'react';
 import { NativeModules, findNodeHandle, NativeEventEmitter } from 'react-native';
 
 const CounterpartExtensionEmitter = new NativeEventEmitter(
@@ -18,7 +18,7 @@ export const CounterpartExtender = forwardRef(({
   const Comp = component;
 
     useEffect(() => {
-      const listTag = findNodeHandle(listRef.current);
+      const listTag = findNodeHandle(compRef.current);
       NativeModules.CounterpartExtension.extendCounterpart(listTag);
 
       const listeners = [];
