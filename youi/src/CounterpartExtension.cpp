@@ -46,16 +46,28 @@ YI_RN_DEFINE_EXPORT_METHOD(CounterpartExtension, extendCounterpart)(uint64_t tag
         EmitEvent(LIST_LOST_FOCUS, data);
     });
     
-    pCounterpart->DescendantGainedFocus.Connect([this, tag](){
+    pCounterpart->DescendantGainedFocus.Connect([this, tag, pListView](){
         dynamic data = dynamic::object;
         data["tag"] = tag;
+
+        if (pListView) 
+        {
+            data["index"] = pListView->GetFocusedItemIndex();
+        }
+        
         EmitEvent(LIST_GAINED_FOCUS, data);
         // Do what you need here.
     });
 
-    pCounterpart->DescendantsChangedFocus.Connect([this, tag](){
+    pCounterpart->DescendantsChangedFocus.Connect([this, tag, pListView](){
         dynamic data = dynamic::object;
         data["tag"] = tag;
+
+        if (pListView)
+        {
+            data["index"] = pListView->GetFocusedItemIndex();
+        }
+
         EmitEvent(LIST_CHANGED_FOCUS, data);
         // Do what you need here.
     });
