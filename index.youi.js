@@ -2,47 +2,29 @@
  * Basic You.i RN app
  */
 import React, { Component } from "react";
-import { AppRegistry, Image, StyleSheet, Text, View } from "react-native";
+import { AppRegistry, Button, StyleSheet, View } from "react-native";
 import { FormFactor } from "@youi/react-native-youi";
+import { CounterpartExtender } from './CounterpartExtender';
 
 export default class YiReactApp extends Component {
   render() {
     return (
-      <View style={styles.mainContainer}>
-        <View style={styles.headerContainer}>
-          <View
-            style={styles.imageContainer}
-            focusable={true}
-            accessible={true}
-            accessibilityLabel="You i TV logo"
-            accessibilityHint="Image in your first app"
-            accessibilityRole="image"
-          >
-            <Image
-              style={styles.image}
-              source={{ uri: "res://drawable/default/youi_logo_red.png" }}
-            />
-          </View>
-        </View>
-        <View style={styles.bodyContainer} focusable={true} accessible={true}>
-          <Text
-            style={styles.headlineText}
-            accessibilityLabel="Welcome to your first You I React Native app"
-          >
-            Welcome to your first You.i React Native app!
-          </Text>
-          <Text
-            style={styles.bodyText}
-          >
-            For more information on where to go next visit
-          </Text>
-          <Text
-            style={styles.bodyText}
-            accessibilityLabel="https://developer dot you i dot tv"
-          >
-            https://developer.youi.tv
-          </Text>
-        </View>
+      <View 
+        style={styles.mainContainer}
+      >
+        <CounterpartExtender
+          component={View} 
+          onListLostFocus={(e) => console.log('Lost Focus', e)}
+          onListGainedFocus={(e) => console.log('Gained Focus', e)}
+          onFocusChanged={(e) => console.log('Changed Focus', e)}
+          style={{ backgroundColor: 'lightblue' }}
+        >
+          <Button title="Button One" />
+          <Button title="Button Two" />
+          <Button title="Button Three" />
+          <Button title="Button Four" />
+        </CounterpartExtender>
+          <Button title="Outside box" />
       </View>
     );
   }
