@@ -5,6 +5,7 @@
 
 #include <youireact/IBridge.h>
 #include <youireact/ShadowTree.h>
+#include <view/YiListView.h>
 
 using namespace folly;
 using namespace std;
@@ -36,6 +37,8 @@ YI_RN_DEFINE_EXPORT_METHOD(CounterpartExtension, extendCounterpart)(uint64_t tag
     // For every React Native component we have a corresponding Widget (counterpart) in the Engine. 
     auto pCounterpart = pComponent->GetCounterpart(); //CYISceneNode 
     YI_ASSERT(pCounterpart, TAG, "Shadow view with tag %" PRIu64 " doesn't have a counterpart.", tag);
+
+    CYIListView * pListView = dynamic_cast<CYIListView *>(pCounterpart);
 
     pCounterpart->DescendantLostFocus.Connect([this, tag](){
         dynamic data = dynamic::object;
