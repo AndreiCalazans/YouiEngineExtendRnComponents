@@ -11,7 +11,7 @@ using namespace std;
 
 const CYIString TAG = "CounterpartExtension";
 
-YI_RN_INSTANTIATE_MODULE(CounterpartExtension);
+YI_RN_INSTANTIATE_MODULE(CounterpartExtension, yi::react::EventEmitterModule);
 YI_RN_REGISTER_MODULE(CounterpartExtension);
 
 
