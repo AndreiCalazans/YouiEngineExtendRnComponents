@@ -1,0 +1,3 @@
+{ 
+  "plugins": ["module:@youi/babel-plugin-react-native-youi"]
+}

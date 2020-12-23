@@ -1,0 +1,39 @@
+{
+  "name": "ExtendingNativeModules",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@youi/react-native-youi": "6.2.0",
+    "@youi/babel-plugin-react-native-youi": "1.0.4",
+    "react": "16.8.6",
+    "react-native": "0.60.6"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "@babel/runtime": "^7.6.2",
+    "metro-react-native-babel-preset": "0.57.0",
+    "jest": "^24.9.0",
+    "react-test-renderer": "16.8.6"
+  },
+  "jest": {
+    "preset": "@youi/react-native-youi",
+    "transform": {
+      "^.+\\.js$": "<rootDir>/node_modules/react-native/jest/preprocessor.js"
+    },
+    "transformIgnorePatterns": [
+      "<rootDir>/node_modules/(?!(jest-)?react-native|@youi)"
+    ],
+    "testPathIgnorePatterns": [
+      "/node_modules/",
+      "/appium/"
+    ]
+  },
+  "youi": {
+    "entryFile": "index.youi.js",
+    "defaultBundleMode": "remote"
+  }
+}
