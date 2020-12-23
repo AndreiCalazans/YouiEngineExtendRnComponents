@@ -2,7 +2,7 @@
  * Basic You.i RN app
  */
 import React, { Component } from "react";
-import { AppRegistry, Button, StyleSheet, View } from "react-native";
+import { AppRegistry, Button, StyleSheet, View, ScrollView } from "react-native";
 import { FormFactor } from "@youi/react-native-youi";
 import { CounterpartExtender } from './CounterpartExtender';
 
@@ -23,7 +23,7 @@ export default class YiReactApp extends Component {
           <Button title="Button Two" />
         </CounterpartExtender>
         <CounterpartExtender
-          component={View} 
+          component={ScrollView} 
           onListLostFocus={(e) => console.log('2 Lost Focus', e)}
           onListGainedFocus={(e) => console.log('2 Gained Focus', e)}
           onFocusChanged={(e) => console.log('2 Changed Focus', e)}

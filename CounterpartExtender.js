@@ -6,7 +6,7 @@ const CounterpartExtensionEmitter = new NativeEventEmitter(
 );
 
 function whenTag(parentTag, callback) {
-  return ({ tag }) => parentTag == tag && callback();
+  return ({ tag, index }) => parentTag == tag && callback(index);
 } 
 
 export const CounterpartExtender = forwardRef(({
