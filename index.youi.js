@@ -21,8 +21,16 @@ export default class YiReactApp extends Component {
         >
           <Button title="Button One" />
           <Button title="Button Two" />
-          <Button title="Button Three" />
-          <Button title="Button Four" />
+        </CounterpartExtender>
+        <CounterpartExtender
+          component={View} 
+          onListLostFocus={(e) => console.log('2 Lost Focus', e)}
+          onListGainedFocus={(e) => console.log('2 Gained Focus', e)}
+          onFocusChanged={(e) => console.log('2 Changed Focus', e)}
+          style={{ backgroundColor: 'yellow' }}
+        >
+          <Button title="Button three" />
+          <Button title="Button four" />
         </CounterpartExtender>
           <Button title="Outside box" />
       </View>
