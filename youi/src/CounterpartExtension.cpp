@@ -25,4 +25,16 @@ YI_RN_DEFINE_EXPORT_METHOD(CounterpartExtension, extendCounterpart)(uint64_t tag
     // For every React Native component we have a corresponding Widget (counterpart) in the Engine. 
     auto pCounterpart = pComponent->GetCounterpart(); //CYISceneNode 
     YI_ASSERT(pCounterpart, TAG, "Shadow view with tag %" PRIu64 " doesn't have a counterpart.", tag);
+
+    pCounterpart->DescendantLostFocus.Connect([](){
+        // Do what you need here.
+    });
+    
+    pCounterpart->DescendantGainedFocus.Connect([](){
+        // Do what you need here.
+    });
+
+    pCounterpart->DescendantsChangedFocus.Connect([](){
+        // Do what you need here.
+    });
 }
