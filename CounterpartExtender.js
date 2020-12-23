@@ -5,6 +5,10 @@ const CounterpartExtensionEmitter = new NativeEventEmitter(
     NativeModules.CounterpartExtension
 );
 
+function whenTag(parentTag, callback) {
+  return ({ tag }) => parentTag == tag && callback();
+} 
+
 export const CounterpartExtender = forwardRef(({
   component,
   onListLostFocus,
@@ -26,21 +30,21 @@ export const CounterpartExtender = forwardRef(({
       if (onListLostFocus) {
         listeners.push(CounterpartExtensionEmitter.addListener(
           "ListLostFocus",
-          onListLostFocus
+          whenTag(listTag, onListLostFocus)
         ));
       }
 
       if (onListGainedFocus) {
         listeners.push(CounterpartExtensionEmitter.addListener(
           "ListGainedFocus",
-          onListGainedFocus
+          whenTag(listTag, onListGainedFocus)
         ));
       }
 
       if (onFocusChanged) {
         listeners.push(CounterpartExtensionEmitter.addListener(
           "ListChangedFocus",
-          onFocusChanged
+          whenTag(listTag, onFocusChanged)
         ));
       }
 
