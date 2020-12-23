@@ -18,6 +18,13 @@ using namespace std;
 YI_RN_INSTANTIATE_MODULE(CounterpartExtension, yi::react::EventEmitterModule);
 YI_RN_REGISTER_MODULE(CounterpartExtension);
 
+CounterpartExtension::CounterpartExtension() {
+    SetSupportedEvents({
+        LIST_GAINED_FOCUS,
+        LIST_LOST_FOCUS,
+        LIST_CHANGED_FOCUS
+    });
+}
 
 YI_RN_DEFINE_EXPORT_METHOD(CounterpartExtension, extendCounterpart)(uint64_t tag)
 {
