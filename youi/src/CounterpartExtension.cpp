@@ -11,6 +11,10 @@ using namespace std;
 
 #define TAG "CounterpartExtension"
 
+#define LIST_GAINED_FOCUS "ListGainedFocus"
+#define LIST_LOST_FOCUS "ListLostFocus"
+#define LIST_CHANGED_FOCUS "ListChangedFocus"
+
 YI_RN_INSTANTIATE_MODULE(CounterpartExtension, yi::react::EventEmitterModule);
 YI_RN_REGISTER_MODULE(CounterpartExtension);
 
@@ -28,13 +32,16 @@ YI_RN_DEFINE_EXPORT_METHOD(CounterpartExtension, extendCounterpart)(uint64_t tag
 
     pCounterpart->DescendantLostFocus.Connect([](){
         // Do what you need here.
+        EmitEvent(LIST_LOST_FOCUS, {});
     });
     
     pCounterpart->DescendantGainedFocus.Connect([](){
+        EmitEvent(LIST_GAINED_FOCUS, {});
         // Do what you need here.
     });
 
     pCounterpart->DescendantsChangedFocus.Connect([](){
+        EmitEvent(LIST_CHANGED_FOCUS, {});
         // Do what you need here.
     });
 }
